@@ -1,0 +1,68 @@
+{% extends "./layout.html" %}
+{% load static %}
+{% block class %}single{%endblock%}
+{% block content %}
+<div id="fh5co-title-box" style="background-image: url({{blogs.image.url}});" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="page-title">
+        <span>{{blogs.date_post}}</span>
+        <h2>{{blogs.title}}</h2>
+    </div>
+</div>
+<div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <p>
+                    {{des|safe}}
+                </p><hr>
+               
+            </div>
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4" style="font-weight: bold;">الأكثر قراءة</div>
+                </div>
+                {% for ne in most  %}
+                    {% if ne.most_popular %}
+                <div class="row pb-3 ">
+                    <div class="col-5 align-self-center">
+                        <a href="{% url 'main:page' ne.title %}">  <img src="{{ne.image.url}}" alt="{{ne.title}}" class="fh5co_most_trading"/>
+                    </div></a>
+                    <div class="col-7 paddding">
+                        <a href="{% url 'main:page' ne.title %}" class="d-block fh5co_small_post_heading"><span class="">{{ne.title}}</span>
+                    </div></a>
+                </div>
+                <hr>
+                {% endif %}
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4" style="font-weight: bold;">المواضيع الرائجة</div>
+        </div>
+        <div class="owl-carousel owl-theme" style="direction: ltr;" id="slider2">
+            {% for nt in trend %}
+            {% if nt.trending  %}
+            <div class="item px-2">
+                <a href="{% url 'main:page' nt.title %}" class="d-block fh5co_small_post_heading">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src="{{nt.image.url}}" alt="{{nt.title}}"/></div>
+                    <div>
+                        <span class="">{{nt.title}}</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> {{nt.date_post}}</div>
+                    </div>
+                   
+                </div>
+            </div>
+        
+            {% endif %}
+            {% endfor %}
+        </div>''
+    </div>
+</div>
+{% endblock %}

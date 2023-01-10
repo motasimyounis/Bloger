@@ -1,0 +1,160 @@
+{% extends "./layout.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid paddding mb-5">
+    <div class="row mx-0">
+        <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
+            <div class="fh5co_suceefh5co_height"><img src="{{main.image.url}}" alt="img"/>
+                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                <div class="fh5co_suceefh5co_height_position_absolute_font">
+                    <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{main.date_post}}
+                    </a></div>
+                    <div class=""><a href="{% url 'main:page' main.title %}" class="fh5co_good_font" style="font-weight: bold;">{{main.title}}</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+
+            {% for nt in news %}
+            {% if nt.main2  %}
+                <div class="col-md-6 col-6 paddding animate-box"data-animate-effect="fadeIn">
+                    
+                    <div class="fh5co_suceefh5co_height_2"><img src="{{nt.image.url}}" alt="img"/>
+                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                            <div class=""><a href="{% url 'main:page' nt.title %}" class="fh5co_good_font_2"> {{nt.short_decsription}} </a></div>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-3">
+    <div class="container animate-box" data-animate-effect="fadeIn">
+        
+           
+           
+        </div>
+    </div>
+</div>
+<div class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4" style="font-weight: bold;">رائج الان</div>
+        </div>
+        <div class="owl-carousel owl-theme" style="direction: ltr;" id="slider2">
+            {% for nt in trend %}
+            {% if nt.trending  %}
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <a href="{% url 'main:page' nt.title %}" class="d-block fh5co_small_post_heading">
+                    <div class="fh5co_news_img"><img src="{{nt.image.url}}" alt=""/></div>
+                    <div>
+                        <span class="">{{nt.title}}</span>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> {{nt.date_post}}</div></a>
+                    </div>
+                </div>
+            </div>
+        
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4" style="font-weight: bold;">الأخبار</div>
+                </div>
+                {% for n in news %}
+                {% if not n.most_popular and not n.trending  %}
+                <div class="row pb-4 more">
+                    
+                    <div class="col-md-5">
+                        <div class="fh5co_hover_news_img">
+                            <a href="{% url 'main:page' n.title %}">
+                            <div class="fh5co_news_img"><img src="{{n.image.url}}" alt=""/></div>
+                            <div></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 animate-box">
+                        <br>
+                        <a href="{% url 'main:page' n.title %}" class="fh5co_magna py-2"> {{n.title}}<br> </a> <a href="{% url 'main:page' n.title %}" class="fh5co_mini_time py-3">
+                        {{n.date_post}} 
+                        <div class="fh5co_consectetur"> {{n.short_decsription}}.
+                        </div>
+                    </div>
+                    
+                </div></a>
+                {% endif %}
+                {% endfor %}
+                <div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
+                    <div class="col-12 text-center pb-4 pt-4">
+                        <button href="#" class="btn_pagging">اعرض المزيد</button>
+                     </div>
+                     <script>
+                        let boxes = [...document.getElementsByClassName('more')];
+                        let currentItem = 3;
+                        $(".btn_pagging").click(function(){
+                         var $this = $(this).text("").html('<i class="fa fa-spinner fa-spin"></i>');
+                         window.setTimeout(function(){
+                         let loadMoreBtn = document.querySelector('.btn_pagging');             
+                        for (var i = currentItem; i < currentItem + 1; i++){
+                            if (i >= boxes.length) { break; }
+
+                              boxes[i].style.display = 'flex';
+                        }
+                        currentItem += 3;
+                        
+                        if(currentItem >= boxes.length){
+                              loadMoreBtn.style.display = 'none';
+                        }
+                        console.log(currentItem)
+                        console.log(boxes.length)
+                        console.log(boxes)
+                         $this.html('').text("اعرض المزيد");
+                        },2000);
+                         
+                        
+                        });
+        
+                        
+                    </script>
+                </div>
+            </div>
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4" style="font-weight: bold;">الأكثر قراءة</div>
+                </div>
+                {% for ne in most  %}
+                    {% if ne.most_popular %}
+                <div class="row pb-3 ">
+                    <div class="col-5 align-self-center">
+                        <a href="{% url 'main:page' ne.title %}">  <img src="{{ne.image.url}}" alt="img" class="fh5co_most_trading"/>
+                    </div></a>
+                    <div class="col-7 paddding">
+                        <a href="{% url 'main:page' ne.title %}" class="d-block fh5co_small_post_heading"><span class="">{{ne.title}}</span>
+                       </a>
+                    </div>
+                   
+                </div>
+                <hr>
+                {% endif %}
+                {% endfor %}
+                
+            </div>
+            
+        </div>
+       
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "./layout.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4" style="font-weight: bold;" >{{f}}</div>
+                </div>
+                {% for bl in blog %}
+                {% if not bl.most_popular and not  bl.trending %}
+
+                <div class="row pb-4 more">
+                    <div class="col-md-5">
+                        <a href="{% url 'main:page' bl.title %}">
+                        <div class="fh5co_hover_news_img">
+                            <div class="fh5co_news_img"><img src="{{bl.image.url}}" alt="{{bl.title}}"/></div>
+                            <div></div>
+                        </div>
+                        </a>
+                    </div>
+            
+                    <div class="col-md-7 animate-box">
+                        <a href="{% url 'main:page' bl.title %}" class="fh5co_magna py-2"> {{bl.title}}. <br> </a> <a href="{% url 'main:page' bl.title %}" class="fh5co_mini_time py-3">
+                        {{bl.date_post}} 
+                        <div class="fh5co_consectetur"> {{bl.short_decsription}}.
+                        </div></a>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% endfor %}
+                <div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
+                    <div class="col-12 text-center pb-4 pt-4">
+                        <button href="#" class="btn_pagging">اعرض المزيد</button>
+                     </div>
+                     <script>
+                           let boxes = [...document.getElementsByClassName('more')];
+                        let currentItem = 3;
+                        $(".btn_pagging").click(function(){
+                         var $this = $(this).text("").html('<i class="fa fa-spinner fa-spin"></i>');
+                         window.setTimeout(function(){
+                         let loadMoreBtn = document.querySelector('.btn_pagging');             
+                        for (var i = currentItem; i < currentItem + 1; i++){
+                            if (i >= boxes.length) { break; }
+
+                              boxes[i].style.display = 'flex';
+                        }
+                        currentItem += 3;
+                        
+                        if(currentItem >= boxes.length){
+                              loadMoreBtn.style.display = 'none';
+                        }
+                        console.log(currentItem)
+                        console.log(boxes.length)
+                        console.log(boxes)
+                         $this.html('').text("اعرض المزيد");
+                        },2000);
+                         
+                        
+                        });
+        
+       
+                        </script>
+                </div>
+                
+            </div>
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4" style="font-weight: bold;">الأكثر قراءة</div>
+                </div>
+                {% for ne in most  %}
+                <div class="row pb-3 ">
+                   
+                    <div class="col-5 align-self-center">
+                        <a href="{% url 'main:page' ne.title %}"> <img src="{{ne.image.url}}" alt="{{ne.title}}" class="fh5co_most_trading"/>
+                    </div></a>
+                    <div class="col-7 paddding">
+                        <a href="{% url 'main:page' ne.title %}" class="d-block fh5co_small_post_heading"><span class="">{{ne.title}}</span>
+                    </div></a>
+                </div>
+                <hr>
+                {% endfor %}
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> مدونة | مجلة الغد</title>
+    <link href="{% static 'css/media_query.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="{% static 'images/lo.icon' %}">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet"></link>
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/owl.theme.default.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/style_1.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Modernizr JS -->
+    <script src="{% static 'js/modernizr-3.5.0.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+
+</head>
+<body class="{% block class %}{%endblock%}" dir="rtl">
+<div class="container-fluid fh5co_header_bg">
+    <div class="container">
+        <div class="row" >
+            <div class="col-12 fh5co_mediya_center"><a href="" class="color_fff fh5co_mediya_setting" dir="rtl"><i
+                    class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;{{D_N}}</a>
+                <div class="d-inline-block fh5co_trading_posotion_relative"><a href="" class="treding_btn">Trending</a>
+                    <div class="fh5co_treding_position_absolute"></div>
+                </div>
+                <a href="{% url 'main:page' mostrend.title %}" class="color_fff fh5co_mediya_setting animate-box" data-animate-effect="fadeInLeft" style= "font-size:18px">{{mostrend.title}}</a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-3 fh5co_padding_menu" >
+                <img style= "width:200px;" src="/media/logo.png" alt="img" class="fh5co_logo_width"/>
+            </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-faded fh5co_padd_mediya padding_786">
+    <div class="container padding_786">
+        <nav class="navbar navbar-toggleable-md navbar-light ">
+            <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+            <a class="navbar-brand"  href="{% url 'main:index'%}"><img src="/media/logo.png" alt="img" class="mobile_logo_width"/></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" style= "font-size : 17px">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'main:index'%}">الرئيسية <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'main:blog'%}">مقالات <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'main:section' 'اقتصاد' %}">اقتصاد <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'main:section' 'رياضة' %}">رياضة <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'main:section' 'تكنولوجيا' %}">تكنولوجيا <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'main:section' 'صحةوجمال' %}">صحةوجمال<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">المزيد <span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
+                            <a class="dropdown-item" href="{% url 'main:privacy' %}">سياسة الخصوصية</a>
+                            <a class="dropdown-item" href="{% url 'main:about' %}">نبذة عنا</a>
+                        </div>
+                    </li>           
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+{% block content %} {% endblock %}
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+
+<div class="container-fluid fh5co_footer_bg pb-3"style=" text-align: center; padding:15px;color: #999;">
+    <strong>   حقوق الطبع و النشر محفوظة &copy;مجلة الغد 2023 </strong>
+
+</div>
+
+    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<!-- Waypoints -->
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<!-- Main -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
